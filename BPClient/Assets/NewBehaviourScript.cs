@@ -18,13 +18,13 @@ public class NewBehaviourScript : MonoBehaviour {
 	void Start()
     {
         // Connect to the Block Party service
-        //service = new AzureMobileServices("http://localhost:49753", "tEtsHvgLHoRZKUATnELAkzCLWXARVl99");
-        service = new AzureMobileServices("http://blockparty.azure-mobile.net", "tEtsHvgLHoRZKUATnELAkzCLWXARVl99");
+        service = new AzureMobileServices("http://localhost:49753", "tEtsHvgLHoRZKUATnELAkzCLWXARVl99");
+        //service = new AzureMobileServices("http://blockparty.azure-mobile.net", "tEtsHvgLHoRZKUATnELAkzCLWXARVl99");
 
         // Ping the Block Party service
-        //WWW userManagerHttpRequest = new WWW("http://localhost:49753/api/UserManager");
-        WWW userManagerHttpRequest = new WWW("http://blockparty.azure-mobile.net/api/UserManager");
-        StartCoroutine(OnUserManagerHttpRequest(userManagerHttpRequest));
+        WWW gameClockHttpRequest = new WWW("http://localhost:49753/api/GameClock");
+        //WWW gameClockHttpRequest = new WWW("http://blockparty.azure-mobile.net/api/GameClock");
+        StartCoroutine(OnGameClockHttpRequest(gameClockHttpRequest));
 
         // Initialize the Facebook SDK
         FB.Init(OnInitialized);
@@ -36,12 +36,16 @@ public class NewBehaviourScript : MonoBehaviour {
         signInButton = GameObject.Find("Sign In Button").GetComponent<Button>();
     }
 
-    IEnumerator OnUserManagerHttpRequest(WWW httpRequest)
+    IEnumerator OnGameClockHttpRequest(WWW httpRequest)
     {
         // Wait until the HTTP request has received a response
         yield return httpRequest;
 
-        Debug.Log("Pinged User Manager. Request=" + httpRequest.text);
+        Debug.Log("Requested Game Clock. Response=" + httpRequest.text);
+        Dictionary<string, object> clock = Facebook.MiniJSON.Json.Deserialize(httpRequest.text) as Dictionary<string, object>;
+        Debug.Log("Deserialized Game Clock. state=" + clock["state"] + ". nextStateTime=" + clock["nextStateTime"]);
+        GameClock.Instance.State = (GameClock.ClockState)Enum.Parse(typeof(GameClock.ClockState), clock["state"] as string, true);
+        GameClock.Instance.NextStateTime = DateTime.Parse(clock["nextStateTime"] as string);
     }
 
     void OnInitialized()

@@ -414,6 +414,7 @@
     <Compile Include="Assets\NewBehaviourScript.cs" />
     <Compile Include="Assets\Scripts\AzureMobileServices.cs" />
     <Compile Include="Assets\Scripts\AzurePlatformCommon.cs" />
+    <Compile Include="Assets\Scripts\GameClock.cs" />
     <Compile Include="Assets\Scripts\IAzureMobileServices.cs" />
     <Compile Include="Assets\Scripts\MobileServiceRequestHelper.cs" />
     <Compile Include="Assets\Scripts\OData\ExpressionWriter.cs" />
