@@ -8,13 +8,11 @@ namespace BPService
 {
     public class WebApiApplication : System.Web.HttpApplication
     {
-        GameClock clock;
-
         protected void Application_Start()
         {
             WebApiConfig.Register();
 
-            clock = new GameClock();
+            GameClock.Instance.LogState();
         }
     }
 }
