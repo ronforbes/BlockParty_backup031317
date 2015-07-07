@@ -13,6 +13,7 @@ namespace BPService.Controllers
         public ApiServices Services { get; set; }
 
         // GET api/GameClock
+        [AuthorizeLevel(Microsoft.WindowsAzure.Mobile.Service.Security.AuthorizationLevel.Anonymous)]
         public GameClock Get()
         {
             Services.Log.Info("Received game clock request from client.");

@@ -27,6 +27,7 @@ namespace BPService
         {
             Default,
             Game,
+            Results,
             Lobby
         }
 
@@ -34,6 +35,7 @@ namespace BPService
         public DateTime NextStateTime;
 
         TimeSpan gameDuration = TimeSpan.FromSeconds(10);
+        TimeSpan resultsDuration = TimeSpan.FromSeconds(10);
         TimeSpan lobbyDuration = TimeSpan.FromSeconds(10);
 
         Timer timer;
@@ -60,6 +62,15 @@ namespace BPService
             {
                 case ClockState.Game:
                     if (DateTime.UtcNow >= NextStateTime)
+                    {
+                        State = ClockState.Results;
+                        NextStateTime = DateTime.UtcNow + resultsDuration;
+                        Debug.WriteLine("Changing state to Results.");
+                    }
+                    break;
+
+                case ClockState.Results:
+                    if(DateTime.UtcNow >= NextStateTime)
                     {
                         State = ClockState.Lobby;
                         NextStateTime = DateTime.UtcNow + lobbyDuration;

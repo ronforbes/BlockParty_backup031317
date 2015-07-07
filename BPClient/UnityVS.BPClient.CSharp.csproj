@@ -7,16 +7,14 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{4154DE1A-AD14-5E5C-1661-E3C5AA95644B}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>
-    </RootNamespace>
+    <RootNamespace></RootNamespace>
     <AssemblyName>Assembly-CSharp</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile>
-    </CompilerResponseFile>
+    <CompilerResponseFile></CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows:5</UnityBuildTarget>
     <UnityVersion>5.1.1f1</UnityVersion>
@@ -61,12 +59,6 @@
     </Reference>
     <Reference Include="UnityEngine.Analytics">
       <HintPath>Library\UnityAssemblies\UnityEngine.Analytics.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.Networking">
-      <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UI">
-      <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.iOS.Extensions.Xcode">
       <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
@@ -411,12 +403,14 @@
     <Compile Include="Assets\JsonDotNet\Source\WinRT\Utilities\RT_ThreadSafeStore.cs" />
     <Compile Include="Assets\JsonDotNet\Source\WinRT\Utilities\RT_TypeExtensions.cs" />
     <Compile Include="Assets\JsonDotNet\Source\WinRT\Utilities\RT_ValidationUtils.cs" />
-    <Compile Include="Assets\NewBehaviourScript.cs" />
-    <Compile Include="Assets\Scripts\AzureMobileServices.cs" />
-    <Compile Include="Assets\Scripts\AzurePlatformCommon.cs" />
+    <Compile Include="Assets\Scripts\AzureMobileServices\AzureMobileServices.cs" />
+    <Compile Include="Assets\Scripts\AzureMobileServices\AzurePlatformCommon.cs" />
+    <Compile Include="Assets\Scripts\AzureMobileServices\IAzureMobileServices.cs" />
+    <Compile Include="Assets\Scripts\AzureMobileServices\MobileServiceRequestHelper.cs" />
+    <Compile Include="Assets\Scripts\BackButtonController.cs" />
     <Compile Include="Assets\Scripts\GameClock.cs" />
-    <Compile Include="Assets\Scripts\IAzureMobileServices.cs" />
-    <Compile Include="Assets\Scripts\MobileServiceRequestHelper.cs" />
+    <Compile Include="Assets\Scripts\GameClockRenderer.cs" />
+    <Compile Include="Assets\Scripts\NetworkingManager.cs" />
     <Compile Include="Assets\Scripts\OData\ExpressionWriter.cs" />
     <Compile Include="Assets\Scripts\OData\IExpressionWriter.cs" />
     <Compile Include="Assets\Scripts\OData\ODataExpressionConverter.cs" />
@@ -462,6 +456,10 @@
     <Compile Include="Assets\Scripts\OData\Writers\UnsignedLongValueWriter.cs" />
     <Compile Include="Assets\Scripts\OData\Writers\UnsignedShortValueWriter.cs" />
     <Compile Include="Assets\Scripts\OData\Writers\ValueWriterBase.cs" />
+    <Compile Include="Assets\Scripts\PlayButtonController.cs" />
+    <Compile Include="Assets\Scripts\UserBadgeController.cs" />
+    <Compile Include="Assets\Scripts\UserBadgeRenderer.cs" />
+    <Compile Include="Assets\Scripts\UserManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\JsonDotNet\ReadMe.txt" />

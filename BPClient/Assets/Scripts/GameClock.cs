@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -28,17 +29,17 @@ public class GameClock : MonoBehaviour
     {
         Default,
         Game,
+        Results,
         Lobby
     }
 
     public ClockState State;
     public DateTime NextStateTime;
+    public TimeSpan TimeRemaining;
 
     TimeSpan gameDuration = TimeSpan.FromSeconds(10);
+    TimeSpan resultsDuration = TimeSpan.FromSeconds(10);
     TimeSpan lobbyDuration = TimeSpan.FromSeconds(10);
-
-    Timer timer;
-    const int timerUpdatesPerSecond = 1;
 
     void Awake()
     {
@@ -57,29 +58,56 @@ public class GameClock : MonoBehaviour
 
     void Start()
     { 
+        // Set the default state until the correct state is received from server Game Clock
         State = ClockState.Default;
-        NextStateTime = DateTime.UtcNow + gameDuration;
 
-        timer = new Timer(1000.0f / timerUpdatesPerSecond);
-        timer.Elapsed += TimerElapsed;
-        timer.Start();
+        // Sync to the global Game Clock
+        //WWW gameClockHttpRequest = new WWW("http://localhost:49753/api/GameClock");
+        WWW gameClockHttpRequest = new WWW("http://blockparty.azure-mobile.net/api/GameClock");
+        StartCoroutine(OnGameClockHttpRequest(gameClockHttpRequest));
     }
 
-    public void LogState()
+    IEnumerator OnGameClockHttpRequest(WWW httpRequest)
     {
-        Debug.Log("State=" + State.ToString());
+        // Wait until the HTTP request has received a response
+        yield return httpRequest;
+
+        // Deserialize and set the Game Clock state
+        Dictionary<string, object> clock = Facebook.MiniJSON.Json.Deserialize(httpRequest.text) as Dictionary<string, object>;
+        State = (GameClock.ClockState)Enum.Parse(typeof(GameClock.ClockState), clock["state"] as string, true);
+        NextStateTime = DateTime.Parse(clock["nextStateTime"] as string);
     }
 
-    void TimerElapsed(object sender, ElapsedEventArgs e)
+    void Update()
     {
+        TimeRemaining = NextStateTime - DateTime.UtcNow;
+
+        // Update state based on the current one
         switch (State)
         {
             case ClockState.Game:
                 if (DateTime.UtcNow >= NextStateTime)
                 {
+                    State = ClockState.Results;
+                    NextStateTime = DateTime.UtcNow + resultsDuration;
+
+                    if(Application.loadedLevelName == "Game")
+                    {
+                        Application.LoadLevel("Results");
+                    }
+                }
+                break;
+
+            case ClockState.Results:
+                if(DateTime.UtcNow >= NextStateTime)
+                {
                     State = ClockState.Lobby;
                     NextStateTime = DateTime.UtcNow + lobbyDuration;
-                    Debug.Log("Changing state to Lobby.");
+
+                    if(Application.loadedLevelName == "Results")
+                    {
+                        Application.LoadLevel("Lobby");
+                    }
                 }
                 break;
 
@@ -88,7 +116,11 @@ public class GameClock : MonoBehaviour
                 {
                     State = ClockState.Game;
                     NextStateTime = DateTime.UtcNow + gameDuration;
-                    Debug.Log("Changing state to Game.");
+
+                    if(Application.loadedLevelName == "Lobby")
+                    {
+                        Application.LoadLevel("Game");
+                    }
                 }
                 break;
         }
