@@ -37,9 +37,9 @@ namespace BPService
         public Guid CurrentGameId;
         public Guid NextGameId;
 
-        TimeSpan gameDuration = TimeSpan.FromSeconds(10);
-        TimeSpan resultsDuration = TimeSpan.FromSeconds(10);
-        TimeSpan lobbyDuration = TimeSpan.FromSeconds(10);
+        TimeSpan gameDuration = TimeSpan.FromSeconds(120);
+        TimeSpan resultsDuration = TimeSpan.FromSeconds(15);
+        TimeSpan lobbyDuration = TimeSpan.FromSeconds(15);
 
         Timer timer;
         const int timerUpdatesPerSecond = 1;

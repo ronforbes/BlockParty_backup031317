@@ -39,9 +39,9 @@ public class GameClock : MonoBehaviour
     public string CurrentGameId;
     public string NextGameId;
 
-    TimeSpan gameDuration = TimeSpan.FromSeconds(10);
-    TimeSpan resultsDuration = TimeSpan.FromSeconds(10);
-    TimeSpan lobbyDuration = TimeSpan.FromSeconds(10);
+    TimeSpan gameDuration = TimeSpan.FromSeconds(120);
+    TimeSpan resultsDuration = TimeSpan.FromSeconds(15);
+    TimeSpan lobbyDuration = TimeSpan.FromSeconds(15);
 
     bool syncedGameId;
 
@@ -66,8 +66,8 @@ public class GameClock : MonoBehaviour
         State = ClockState.Default;
 
         // Sync to the global Game Clock
-        WWW gameClockHttpRequest = new WWW("http://localhost:49753/api/GameClock");
-        //WWW gameClockHttpRequest = new WWW("http://blockparty.azure-mobile.net/api/GameClock");
+        //WWW gameClockHttpRequest = new WWW("http://localhost:49753/api/GameClock");
+        WWW gameClockHttpRequest = new WWW("http://blockparty.azure-mobile.net/api/GameClock");
         StartCoroutine(OnGameClockHttpRequest(gameClockHttpRequest));
     }
 
@@ -124,7 +124,8 @@ public class GameClock : MonoBehaviour
                     if (!syncedGameId)
                     {
                         syncedGameId = true;
-                        WWW nextGameIdHttpRequest = new WWW("http://localhost:49753/api/GameClock");
+                        //WWW nextGameIdHttpRequest = new WWW("http://localhost:49753/api/GameClock");
+                        WWW nextGameIdHttpRequest = new WWW("http://blockparty.azure-mobile.net/api/GameClock");
                         StartCoroutine(OnNextGameIdHttpRequest(nextGameIdHttpRequest));
                     }
                 }

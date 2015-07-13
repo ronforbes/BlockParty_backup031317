@@ -11,8 +11,8 @@ public class LeaderboardReceiver : MonoBehaviour {
 	void Update () {
 	    if(GameClock.Instance.TimeRemaining.Seconds <= 5 && !requestedLeaderboard)
         {
-            //WWW leaderboardHttpRequest = new WWW("http://blockparty.azure-mobile.net/api/Leaderboard");
-            WWW leaderboardHttpRequest = new WWW("http://localhost:49753/api/Leaderboard");
+            WWW leaderboardHttpRequest = new WWW("http://blockparty.azure-mobile.net/api/Leaderboard");
+            //WWW leaderboardHttpRequest = new WWW("http://localhost:49753/api/Leaderboard");
             StartCoroutine(OnLeaderboardHttpRequest(leaderboardHttpRequest));
             
             requestedLeaderboard = true;

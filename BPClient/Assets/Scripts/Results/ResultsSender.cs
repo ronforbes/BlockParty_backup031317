@@ -30,8 +30,8 @@ public class ResultsSender : MonoBehaviour
         // Convert the serialized game result into a byte array
         byte[] body = Encoding.UTF8.GetBytes(serializedResult);
 
-        //WWW httpRequest = new WWW("http://blockparty.azure-mobile.net/tables/GameResult", body, headers);
-        WWW httpRequest = new WWW("http://localhost:49753/tables/GameResult", body, headers);
+        WWW httpRequest = new WWW("http://blockparty.azure-mobile.net/tables/GameResult", body, headers);
+        //WWW httpRequest = new WWW("http://localhost:49753/tables/GameResult", body, headers);
         StartCoroutine(OnHttpRequest(httpRequest));
     }
 

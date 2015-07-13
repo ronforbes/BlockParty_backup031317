@@ -44,7 +44,7 @@ public class NetworkingManager : MonoBehaviour
     void Start ()
     {
         // Connect to the Block Party service
-        Service = new AzureMobileServices("http://localhost:49753", "tEtsHvgLHoRZKUATnELAkzCLWXARVl99");
-        //Service = new AzureMobileServices("http://blockparty.azure-mobile.net", "tEtsHvgLHoRZKUATnELAkzCLWXARVl99");
+        //Service = new AzureMobileServices("http://localhost:49753", "tEtsHvgLHoRZKUATnELAkzCLWXARVl99");
+        Service = new AzureMobileServices("http://blockparty.azure-mobile.net", "tEtsHvgLHoRZKUATnELAkzCLWXARVl99");
     }
 }
