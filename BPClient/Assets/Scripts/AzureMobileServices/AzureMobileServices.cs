@@ -167,7 +167,7 @@ namespace Bitrave.Azure
         public void Delete<T>(T item, Action<AzureResponse<object>> callback = null) where T : class
         {
             Log("Deleting: " + item);
-            var type = typeof(T);
+            //var type = typeof(T);
             var id = MobileServiceRequestHelper<T>.GetItemId<T>(item);
 
             var ms = CreateHelper<T>();

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BPService.Models;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -33,6 +34,8 @@ namespace BPService
 
         public ClockState State;
         public DateTime NextStateTime;
+        public Guid CurrentGameId;
+        public Guid NextGameId;
 
         TimeSpan gameDuration = TimeSpan.FromSeconds(10);
         TimeSpan resultsDuration = TimeSpan.FromSeconds(10);
@@ -45,6 +48,8 @@ namespace BPService
         {
             State = ClockState.Game;
             NextStateTime = DateTime.UtcNow + gameDuration;
+            CurrentGameId = Guid.NewGuid();
+            NextGameId = Guid.NewGuid();
 
             timer = new Timer(1000.0f / timerUpdatesPerSecond);
             timer.Elapsed += Update;
@@ -53,7 +58,7 @@ namespace BPService
 
         public void LogState()
         {
-            Debug.WriteLine("State=" + State.ToString());
+            Debug.WriteLine("State=" + State.ToString() + ". CurrentGameId=" + CurrentGameId);
         }
 
         void Update(object sender, ElapsedEventArgs e)
@@ -83,7 +88,9 @@ namespace BPService
                     {
                         State = ClockState.Game;
                         NextStateTime = DateTime.UtcNow + gameDuration;
-                        Debug.WriteLine("Changing state to Game.");
+                        CurrentGameId = NextGameId;
+                        NextGameId = Guid.NewGuid();
+                        Debug.WriteLine("Changing state to Game. CurrentGameId=" + CurrentGameId);
                     }
                     break;
             }

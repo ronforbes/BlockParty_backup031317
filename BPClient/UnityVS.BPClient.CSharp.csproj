@@ -407,10 +407,26 @@
     <Compile Include="Assets\Scripts\AzureMobileServices\AzurePlatformCommon.cs" />
     <Compile Include="Assets\Scripts\AzureMobileServices\IAzureMobileServices.cs" />
     <Compile Include="Assets\Scripts\AzureMobileServices\MobileServiceRequestHelper.cs" />
-    <Compile Include="Assets\Scripts\BackButtonController.cs" />
-    <Compile Include="Assets\Scripts\GameClock.cs" />
-    <Compile Include="Assets\Scripts\GameClockRenderer.cs" />
-    <Compile Include="Assets\Scripts\NetworkingManager.cs" />
+    <Compile Include="Assets\Scripts\Game\Block\Block.cs" />
+    <Compile Include="Assets\Scripts\Game\Block\BlockChaining.cs" />
+    <Compile Include="Assets\Scripts\Game\Block\BlockClearer.cs" />
+    <Compile Include="Assets\Scripts\Game\Block\BlockEmptier.cs" />
+    <Compile Include="Assets\Scripts\Game\Block\BlockFaller.cs" />
+    <Compile Include="Assets\Scripts\Game\Block\BlockMatcher.cs" />
+    <Compile Include="Assets\Scripts\Game\Block\BlockRenderer.cs" />
+    <Compile Include="Assets\Scripts\Game\Block\BlockSlider.cs" />
+    <Compile Include="Assets\Scripts\Game\Board\Board.cs" />
+    <Compile Include="Assets\Scripts\Game\Board\BoardController.cs" />
+    <Compile Include="Assets\Scripts\Game\Board\BoardGravity.cs" />
+    <Compile Include="Assets\Scripts\Game\Board\BoardRaiser.cs" />
+    <Compile Include="Assets\Scripts\Game\Board\BoardRaiserController.cs" />
+    <Compile Include="Assets\Scripts\Game\Board\ChainDetector.cs" />
+    <Compile Include="Assets\Scripts\Game\Board\MatchDetector.cs" />
+    <Compile Include="Assets\Scripts\Game\ScoreRenderer.cs" />
+    <Compile Include="Assets\Scripts\Lobby\LeaderboardRenderer.cs" />
+    <Compile Include="Assets\Scripts\Menu\PlayButtonController.cs" />
+    <Compile Include="Assets\Scripts\Menu\UserBadgeController.cs" />
+    <Compile Include="Assets\Scripts\Menu\UserBadgeRenderer.cs" />
     <Compile Include="Assets\Scripts\OData\ExpressionWriter.cs" />
     <Compile Include="Assets\Scripts\OData\IExpressionWriter.cs" />
     <Compile Include="Assets\Scripts\OData\ODataExpressionConverter.cs" />
@@ -456,10 +472,17 @@
     <Compile Include="Assets\Scripts\OData\Writers\UnsignedLongValueWriter.cs" />
     <Compile Include="Assets\Scripts\OData\Writers\UnsignedShortValueWriter.cs" />
     <Compile Include="Assets\Scripts\OData\Writers\ValueWriterBase.cs" />
-    <Compile Include="Assets\Scripts\PlayButtonController.cs" />
-    <Compile Include="Assets\Scripts\UserBadgeController.cs" />
-    <Compile Include="Assets\Scripts\UserBadgeRenderer.cs" />
-    <Compile Include="Assets\Scripts\UserManager.cs" />
+    <Compile Include="Assets\Scripts\Results\GameResult.cs" />
+    <Compile Include="Assets\Scripts\Results\LeaderboardReceiver.cs" />
+    <Compile Include="Assets\Scripts\Results\ResultsRenderer.cs" />
+    <Compile Include="Assets\Scripts\Results\ResultsSender.cs" />
+    <Compile Include="Assets\Scripts\Shared\BackButtonController.cs" />
+    <Compile Include="Assets\Scripts\Shared\GameClock.cs" />
+    <Compile Include="Assets\Scripts\Shared\GameClockRenderer.cs" />
+    <Compile Include="Assets\Scripts\Shared\Leaderboard.cs" />
+    <Compile Include="Assets\Scripts\Shared\NetworkingManager.cs" />
+    <Compile Include="Assets\Scripts\Shared\ScoreManager.cs" />
+    <Compile Include="Assets\Scripts\Shared\UserManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\JsonDotNet\ReadMe.txt" />
@@ -506,6 +529,8 @@
     <None Include="Assets\Plugins\Android\facebook\res\values\drawables.xml" />
     <None Include="Assets\Plugins\Android\facebook\res\values\strings.xml" />
     <None Include="Assets\Plugins\Android\facebook\res\values\styles.xml" />
+    <None Include="Assets\Shaders\StencilDrawInMask.shader" />
+    <None Include="Assets\Shaders\StencilMask.shader" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>

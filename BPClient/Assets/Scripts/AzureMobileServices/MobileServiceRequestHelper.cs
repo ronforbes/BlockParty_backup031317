@@ -153,7 +153,7 @@ namespace Bitrave.Azure
             request.AddHeader("Content-Type", "application/json");
             request.AddParameter("application/json", json, ParameterType.RequestBody);
 
-            var handle = baseClient.ExecuteAsync<MobileServiceUser>(request, LoginAsyncHandler);
+            baseClient.ExecuteAsync<MobileServiceUser>(request, LoginAsyncHandler);
         }
 
         private void LoginAsyncHandler(IRestResponse<MobileServiceUser> restResponse, RestRequestAsyncHandle handle)
@@ -217,18 +217,18 @@ namespace Bitrave.Azure
             if (callback != null) callback(postResponse);
         }
 
-		public static Guid GetItemId<T>(T item) where T : class
+		public static Guid GetItemId<Type>(Type item) where Type : class
 		{
-			var type = typeof(T);
-			var prop = MobileServiceRequestHelper<T>.GetIdProperty();
+			//var type = typeof(Type);
+			var prop = MobileServiceRequestHelper<Type>.GetIdProperty();
 			var id = (Guid)prop.GetValue(item, null);
 			return id;
 		}
 		
-		public static void SetItemId<T>(T item, Guid? id) where T : class
+		public static void SetItemId<Type>(Type item, Guid? id) where Type : class
 		{
-			var type = typeof(T);
-			var prop = MobileServiceRequestHelper<T>.GetIdProperty();
+			//var type = typeof(Type);
+			var prop = MobileServiceRequestHelper<Type>.GetIdProperty();
 			prop.SetValue(item, id, null);
 		}
 
@@ -251,7 +251,7 @@ namespace Bitrave.Azure
         {
             if (restResponse.ResponseStatus != ResponseStatus.Completed)
             {
-                var error = new AzureResponse<object>(restResponse);
+                //var error = new AzureResponse<object>(restResponse);
                 Debug.LogError("Rest Error:" + restResponse.ErrorMessage);
             }
         }

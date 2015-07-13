@@ -22,6 +22,7 @@ public class UserManager : MonoBehaviour
         }
     }
 
+    public string Id;
     public string Name;
     public Texture2D Picture;
 
@@ -87,6 +88,7 @@ public class UserManager : MonoBehaviour
     {
         // Deserialize the result, and save the name
         Dictionary<string, object> profile = Facebook.MiniJSON.Json.Deserialize(result.Text) as Dictionary<string, object>;
+        Id = profile["id"] as string;
         Name = profile["name"] as string;
     }
 

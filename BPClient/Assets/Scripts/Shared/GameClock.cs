@@ -36,10 +36,14 @@ public class GameClock : MonoBehaviour
     public ClockState State;
     public DateTime NextStateTime;
     public TimeSpan TimeRemaining;
+    public string CurrentGameId;
+    public string NextGameId;
 
     TimeSpan gameDuration = TimeSpan.FromSeconds(10);
     TimeSpan resultsDuration = TimeSpan.FromSeconds(10);
     TimeSpan lobbyDuration = TimeSpan.FromSeconds(10);
+
+    bool syncedGameId;
 
     void Awake()
     {
@@ -62,8 +66,8 @@ public class GameClock : MonoBehaviour
         State = ClockState.Default;
 
         // Sync to the global Game Clock
-        //WWW gameClockHttpRequest = new WWW("http://localhost:49753/api/GameClock");
-        WWW gameClockHttpRequest = new WWW("http://blockparty.azure-mobile.net/api/GameClock");
+        WWW gameClockHttpRequest = new WWW("http://localhost:49753/api/GameClock");
+        //WWW gameClockHttpRequest = new WWW("http://blockparty.azure-mobile.net/api/GameClock");
         StartCoroutine(OnGameClockHttpRequest(gameClockHttpRequest));
     }
 
@@ -76,6 +80,7 @@ public class GameClock : MonoBehaviour
         Dictionary<string, object> clock = Facebook.MiniJSON.Json.Deserialize(httpRequest.text) as Dictionary<string, object>;
         State = (GameClock.ClockState)Enum.Parse(typeof(GameClock.ClockState), clock["state"] as string, true);
         NextStateTime = DateTime.Parse(clock["nextStateTime"] as string);
+        CurrentGameId = clock["currentGameId"] as string;
     }
 
     void Update()
@@ -90,8 +95,9 @@ public class GameClock : MonoBehaviour
                 {
                     State = ClockState.Results;
                     NextStateTime = DateTime.UtcNow + resultsDuration;
+                    Leaderboard.Instance.Reset();
 
-                    if(Application.loadedLevelName == "Game")
+                    if (Application.loadedLevelName == "Game")
                     {
                         Application.LoadLevel("Results");
                     }
@@ -102,7 +108,7 @@ public class GameClock : MonoBehaviour
                 if(DateTime.UtcNow >= NextStateTime)
                 {
                     State = ClockState.Lobby;
-                    NextStateTime = DateTime.UtcNow + lobbyDuration;
+                    NextStateTime = DateTime.UtcNow + lobbyDuration;                    
 
                     if(Application.loadedLevelName == "Results")
                     {
@@ -112,17 +118,42 @@ public class GameClock : MonoBehaviour
                 break;
 
             case ClockState.Lobby:
+                if(DateTime.UtcNow >= NextStateTime - TimeSpan.FromSeconds(5))
+                {
+                    // Get the next Game ID
+                    if (!syncedGameId)
+                    {
+                        syncedGameId = true;
+                        WWW nextGameIdHttpRequest = new WWW("http://localhost:49753/api/GameClock");
+                        StartCoroutine(OnNextGameIdHttpRequest(nextGameIdHttpRequest));
+                    }
+                }
+
                 if (DateTime.UtcNow >= NextStateTime)
                 {
                     State = ClockState.Game;
                     NextStateTime = DateTime.UtcNow + gameDuration;
+                    CurrentGameId = NextGameId;
+                    syncedGameId = false;
 
-                    if(Application.loadedLevelName == "Lobby")
+                    if (Application.loadedLevelName == "Lobby")
                     {
+                        ScoreManager.Instance.Reset(); 
+
                         Application.LoadLevel("Game");
                     }
                 }
                 break;
         }
+    }
+
+    IEnumerator OnNextGameIdHttpRequest(WWW httpRequest)
+    {
+        // Wait until the HTTP request has received a response
+        yield return httpRequest;
+
+        // Deserialize and set the Game Clock state
+        Dictionary<string, object> clock = Facebook.MiniJSON.Json.Deserialize(httpRequest.text) as Dictionary<string, object>;
+        NextGameId = clock["nextGameId"] as string;
     }
 }
