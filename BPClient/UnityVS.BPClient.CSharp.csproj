@@ -476,6 +476,7 @@
     <Compile Include="Assets\Scripts\Results\LeaderboardReceiver.cs" />
     <Compile Include="Assets\Scripts\Results\ResultsRenderer.cs" />
     <Compile Include="Assets\Scripts\Results\ResultsSender.cs" />
+    <Compile Include="Assets\Scripts\Shared\Ad.cs" />
     <Compile Include="Assets\Scripts\Shared\BackButtonController.cs" />
     <Compile Include="Assets\Scripts\Shared\GameClock.cs" />
     <Compile Include="Assets\Scripts\Shared\GameClockRenderer.cs" />
