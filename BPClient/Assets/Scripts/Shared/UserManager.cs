@@ -53,6 +53,15 @@ public class UserManager : MonoBehaviour
 		FB.Login ("", OnFacebookLoggedIn);
 	}
 
+	public void Logout ()
+	{
+		// Log out of Facebook
+		FB.Logout ();
+		Id = "";
+		Name = "";
+		Picture = null;
+	}
+
 	void OnFacebookLoggedIn (FBResult result)
 	{ 
 		// Log into the Block Party service

@@ -77,12 +77,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Sprites:
-  - {fileID: 21300000, guid: 760af436948bf44618032621bbde38a6, type: 3}
-  - {fileID: 21300000, guid: 02eb04cb4b82d4161a93068cf50ac5a2, type: 3}
-  - {fileID: 21300000, guid: 75bf3d85a492647a58334bd94174d124, type: 3}
-  - {fileID: 21300000, guid: 90beb73c88a784867ac40a52a437589c, type: 3}
-  - {fileID: 21300000, guid: 6df52e582bb4543a9b386bab87df3883, type: 3}
-  - {fileID: 21300000, guid: afa9794f9ea124fe7b15ec3387034726, type: 3}
+  - {fileID: 21300000, guid: 9448158162ba643369e340065d117d7f, type: 3}
+  - {fileID: 21300000, guid: d49c09d5ccf9f4af8b7d93d25869cc32, type: 3}
+  - {fileID: 21300000, guid: 260f6e2c5e93a4c7585c289bb00b5001, type: 3}
+  - {fileID: 21300000, guid: 794e892a75795455881e91439bda7c1c, type: 3}
+  - {fileID: 21300000, guid: c67d6bccd0cf2411388217e80ffc1e4f, type: 3}
+  - {fileID: 21300000, guid: d00f8022ecc3a4941a150078b92ad3cb, type: 3}
   MatchedSprite: {fileID: 21300000, guid: a7b82375977494e74a8d93f17008ee73, type: 3}
 --- !u!114 &11430956
 MonoBehaviour:
@@ -212,6 +212,36 @@ Prefab:
       propertyPath: m_SortingOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: Sprites.Array.data[4]
+      value: 
+      objectReference: {fileID: 21300000, guid: c67d6bccd0cf2411388217e80ffc1e4f,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: Sprites.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: 9448158162ba643369e340065d117d7f,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: Sprites.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: d49c09d5ccf9f4af8b7d93d25869cc32,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: Sprites.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300000, guid: 260f6e2c5e93a4c7585c289bb00b5001,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: Sprites.Array.data[3]
+      value: 
+      objectReference: {fileID: 21300000, guid: 794e892a75795455881e91439bda7c1c,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: Sprites.Array.data[5]
+      value: 
+      objectReference: {fileID: 21300000, guid: d00f8022ecc3a4941a150078b92ad3cb,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 133946}

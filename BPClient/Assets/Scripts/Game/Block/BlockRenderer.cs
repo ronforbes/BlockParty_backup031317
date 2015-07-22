@@ -11,7 +11,7 @@ public class BlockRenderer : MonoBehaviour
 	BoardRaiser raiser;
 	SpriteRenderer spriteRenderer;
 	public List<Sprite> Sprites;
-	public Sprite MatchedSprite;
+	public List<Sprite> MatchedSprites;
 
 	// Use this for initialization
 	void Awake ()
@@ -33,12 +33,14 @@ public class BlockRenderer : MonoBehaviour
 		switch (block.State) {
 		case Block.BlockState.Empty:
 			transform.position = new Vector3 (block.X, block.Y + raiseOffset, 0.0f);
+			transform.localScale = Vector3.one;
 
 			spriteRenderer.enabled = false;
 			break;
             
 		case Block.BlockState.Idle:
 			transform.position = new Vector3 (block.X, block.Y + raiseOffset, 0.0f);
+			transform.localScale = Vector3.one;
             
 			spriteRenderer.enabled = true;
 			spriteRenderer.sprite = Sprites [block.Type];
@@ -91,7 +93,8 @@ public class BlockRenderer : MonoBehaviour
 			transform.position = new Vector3 (block.X, block.Y + raiseOffset, 0.0f);
 
 			spriteRenderer.enabled = true;
-			spriteRenderer.sprite = MatchedSprite;
+			Debug.Log (Time.time % 0.05f);
+			spriteRenderer.sprite = MatchedSprites [block.Type];
 			spriteRenderer.color = new Color (1.0f, 1.0f, 1.0f, 1.0f);
 			break;
 
@@ -99,22 +102,26 @@ public class BlockRenderer : MonoBehaviour
 			transform.position = new Vector3 (block.X, block.Y + raiseOffset, 0.0f);
 
 			spriteRenderer.enabled = true;
-			spriteRenderer.sprite = Sprites [block.Type];
-			spriteRenderer.color = new Color (0.5f, 0.5f, 0.5f, 0.5f);
+			spriteRenderer.sprite = MatchedSprites [block.Type];
+			spriteRenderer.color = new Color (1.0f, 1.0f, 1.0f, 1.0f);
 			break;
 
 		case Block.BlockState.Clearing:
 			transform.position = new Vector3 (block.X, block.Y + raiseOffset, 0.0f);
                 
 			spriteRenderer.enabled = true;
-			spriteRenderer.sprite = Sprites [block.Type];
+			spriteRenderer.sprite = MatchedSprites [block.Type];
 
 			float alpha = 1.0f - clearer.Elapsed / BlockClearer.Duration;
-			spriteRenderer.color = new Color (0.5f, 0.5f, 0.5f, alpha);
+			spriteRenderer.color = new Color (1.0f, 1.0f, 1.0f, alpha);
+
+			float scale = 1.0f - clearer.Elapsed / BlockClearer.Duration;
+			transform.localScale = new Vector3 (scale, scale, scale);
 			break;
 
 		case Block.BlockState.WaitingToEmpty:
 			transform.position = new Vector3 (block.X, block.Y + raiseOffset, 0.0f);
+			transform.localScale = Vector3.one;
 
 			spriteRenderer.enabled = false;
 			break;
