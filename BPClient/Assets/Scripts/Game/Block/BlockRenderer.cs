@@ -10,6 +10,8 @@ public class BlockRenderer : MonoBehaviour
 	BlockClearer clearer;
 	BoardRaiser raiser;
 	SpriteRenderer spriteRenderer;
+	SpriteRenderer matchGradientRenderer;
+	ParticleSystem particleSystem;
 	public List<Sprite> Sprites;
 	public List<Sprite> MatchedSprites;
 
@@ -21,7 +23,9 @@ public class BlockRenderer : MonoBehaviour
 		faller = GetComponent<BlockFaller> ();
 		clearer = GetComponent<BlockClearer> ();
 		raiser = GameObject.Find ("Board").GetComponent<BoardRaiser> ();
-		spriteRenderer = GetComponent<SpriteRenderer> ();
+		spriteRenderer = transform.Find ("Sprite").GetComponent<SpriteRenderer> ();
+		matchGradientRenderer = transform.Find ("Match Gradient").GetComponent<SpriteRenderer> ();
+		particleSystem = transform.Find ("Match Particles").GetComponent<ParticleSystem> ();
 	}
 
 	// Update is called once per frame
@@ -33,17 +37,20 @@ public class BlockRenderer : MonoBehaviour
 		switch (block.State) {
 		case Block.BlockState.Empty:
 			transform.position = new Vector3 (block.X, block.Y + raiseOffset, 0.0f);
-			transform.localScale = Vector3.one;
+			spriteRenderer.transform.localScale = Vector3.one;
+			matchGradientRenderer.transform.localScale = Vector3.one;
 
 			spriteRenderer.enabled = false;
+			matchGradientRenderer.enabled = false;
 			break;
             
 		case Block.BlockState.Idle:
 			transform.position = new Vector3 (block.X, block.Y + raiseOffset, 0.0f);
-			transform.localScale = Vector3.one;
             
 			spriteRenderer.enabled = true;
 			spriteRenderer.sprite = Sprites [block.Type];
+
+			matchGradientRenderer.enabled = false;
 
 			if (block.Y != 0)
 				spriteRenderer.color = new Color (1.0f, 1.0f, 1.0f, 1.0f);
@@ -116,7 +123,17 @@ public class BlockRenderer : MonoBehaviour
 			spriteRenderer.color = new Color (1.0f, 1.0f, 1.0f, alpha);
 
 			float scale = 1.0f - clearer.Elapsed / BlockClearer.Duration;
-			transform.localScale = new Vector3 (scale, scale, scale);
+			spriteRenderer.transform.localScale = new Vector3 (scale, scale, scale);
+
+			matchGradientRenderer.enabled = true;
+
+			float gradientAlpha = 1.0f - clearer.Elapsed / BlockClearer.Duration;
+			matchGradientRenderer.color = new Color (1.0f, 1.0f, 1.0f, gradientAlpha);
+
+			float gradientScale = 0.5f + 1.0f * clearer.Elapsed / BlockClearer.Duration;
+			matchGradientRenderer.transform.localScale = new Vector3 (gradientScale, gradientScale, gradientScale);
+
+			particleSystem.Play ();
 			break;
 
 		case Block.BlockState.WaitingToEmpty:
@@ -124,6 +141,7 @@ public class BlockRenderer : MonoBehaviour
 			transform.localScale = Vector3.one;
 
 			spriteRenderer.enabled = false;
+			matchGradientRenderer.enabled = false;
 			break;
 		}
 
