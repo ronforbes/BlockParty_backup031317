@@ -742,7 +742,7 @@ Camera:
   field of view: 60
   orthographic: 1
   orthographic size: 6
-  m_Depth: -1
+  m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -994,7 +994,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bf934d727d754fed97e6ce655b31361, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BlockPrefab: {fileID: 11430956, guid: fa6840552997145f988eb16136267749, type: 2}
+  BlockPrefab: {fileID: 11412748, guid: fa6840552997145f988eb16136267749, type: 2}
 --- !u!114 &2039867336
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -13,7 +13,7 @@ PlayerSettings:
   productName: Block Party
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
-  m_ShowUnitySplashScreen: 1
+  m_ShowUnitySplashScreen: 0
   defaultScreenWidth: 1024
   defaultScreenHeight: 768
   defaultScreenWidthWeb: 960
@@ -134,7 +134,7 @@ PlayerSettings:
   m_BuildTargetIcons:
   - m_BuildTarget: 
     m_Icons:
-    - m_Icon: {fileID: 0}
+    - m_Icon: {fileID: 2800000, guid: c67d6bccd0cf2411388217e80ffc1e4f, type: 3}
       m_Size: 128
   m_BuildTargetBatching: []
   m_BuildTargetGraphicsAPIs: []
@@ -258,6 +258,7 @@ PlayerSettings:
   spritePackerPolicy: 
   scriptingDefineSymbols:
     2: 
+    4: 
   metroPackageName: BPClient
   metroPackageLogo: 
   metroPackageLogo140: 
