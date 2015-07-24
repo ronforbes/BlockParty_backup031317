@@ -12,6 +12,7 @@ public class BlockRenderer : MonoBehaviour
 	SpriteRenderer spriteRenderer;
 	SpriteRenderer matchGradientRenderer;
 	ParticleSystem particleSystem;
+	SpriteRenderer additiveLayer;
 	public List<Sprite> Sprites;
 	public List<Sprite> MatchedSprites;
 
@@ -26,6 +27,7 @@ public class BlockRenderer : MonoBehaviour
 		spriteRenderer = transform.Find ("Sprite").GetComponent<SpriteRenderer> ();
 		matchGradientRenderer = transform.Find ("Match Gradient").GetComponent<SpriteRenderer> ();
 		particleSystem = transform.Find ("Match Particles").GetComponent<ParticleSystem> ();
+		additiveLayer = transform.Find ("Additive Layer").GetComponent<SpriteRenderer> ();
 	}
 
 	// Update is called once per frame
@@ -100,24 +102,34 @@ public class BlockRenderer : MonoBehaviour
 			transform.position = new Vector3 (block.X, block.Y + raiseOffset, 0.0f);
 
 			spriteRenderer.enabled = true;
-			Debug.Log (Time.time % 0.05f);
-			spriteRenderer.sprite = MatchedSprites [block.Type];
+			spriteRenderer.sprite = Sprites [block.Type];
 			spriteRenderer.color = new Color (1.0f, 1.0f, 1.0f, 1.0f);
+
+			// Setup the additive layer to highlight the block
+			additiveLayer.enabled = true;
+			additiveLayer.transform.localScale = Vector3.one;
+			additiveLayer.sprite = Sprites [block.Type];
+			additiveLayer.color = new Color (1.0f, 1.0f, 1.0f, 0.25f);
 			break;
 
 		case Block.BlockState.WaitingToClear:
 			transform.position = new Vector3 (block.X, block.Y + raiseOffset, 0.0f);
 
 			spriteRenderer.enabled = true;
-			spriteRenderer.sprite = MatchedSprites [block.Type];
+			spriteRenderer.sprite = Sprites [block.Type];
 			spriteRenderer.color = new Color (1.0f, 1.0f, 1.0f, 1.0f);
+
+			// Setup the additive layer to highlight the block
+			additiveLayer.enabled = true;
+			additiveLayer.sprite = Sprites [block.Type];
+			additiveLayer.color = new Color (1.0f, 1.0f, 1.0f, 0.25f);
 			break;
 
 		case Block.BlockState.Clearing:
 			transform.position = new Vector3 (block.X, block.Y + raiseOffset, 0.0f);
                 
 			spriteRenderer.enabled = true;
-			spriteRenderer.sprite = MatchedSprites [block.Type];
+			spriteRenderer.sprite = Sprites [block.Type];
 
 			float alpha = 1.0f - clearer.Elapsed / BlockClearer.Duration;
 			spriteRenderer.color = new Color (1.0f, 1.0f, 1.0f, alpha);
@@ -134,6 +146,12 @@ public class BlockRenderer : MonoBehaviour
 			matchGradientRenderer.transform.localScale = new Vector3 (gradientScale, gradientScale, gradientScale);
 
 			particleSystem.Play ();
+
+			// Setup the additive layer to highlight the block and shrink throughout the clear
+			additiveLayer.enabled = true;
+			additiveLayer.sprite = Sprites [block.Type];
+			additiveLayer.color = new Color (1.0f, 1.0f, 1.0f, 0.25f);
+			additiveLayer.transform.localScale = new Vector3 (scale, scale, scale);
 			break;
 
 		case Block.BlockState.WaitingToEmpty:
@@ -142,6 +160,7 @@ public class BlockRenderer : MonoBehaviour
 
 			spriteRenderer.enabled = false;
 			matchGradientRenderer.enabled = false;
+			additiveLayer.enabled = false;
 			break;
 		}
 
