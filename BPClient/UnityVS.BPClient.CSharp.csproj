@@ -483,6 +483,7 @@
     <Compile Include="Assets\Scripts\Shared\Leaderboard.cs" />
     <Compile Include="Assets\Scripts\Shared\NetworkingManager.cs" />
     <Compile Include="Assets\Scripts\Shared\ScoreManager.cs" />
+    <Compile Include="Assets\Scripts\Shared\TextUnicode.cs" />
     <Compile Include="Assets\Scripts\Shared\UserManager.cs" />
   </ItemGroup>
   <ItemGroup>

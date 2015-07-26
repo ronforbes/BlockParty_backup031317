@@ -3,95 +3,82 @@ using System.Collections;
 
 public class BoardRaiser : MonoBehaviour
 {
-    Board board;
-    float raiseRate = 1.0f;
-    public float Elapsed;
-    public const float Duration = 10.0f;
-    bool forcingRaise;
-    const float forcedRaiseRate = 10.0f;
+	Board board;
+	float raiseRate = 1.0f;
+	public float Elapsed;
+	public const float Duration = 10.0f;
+	bool forcingRaise;
+	const float forcedRaiseRate = 20.0f;
 
-    // Use this for initialization
-    void Awake()
-    {
-        board = GetComponent<Board>();
-    }
+	// Use this for initialization
+	void Awake ()
+	{
+		board = GetComponent<Board> ();
+	}
 	
-    public void ForceRaise()
-    {
-        forcingRaise = true;
-    }
+	public void ForceRaise ()
+	{
+		forcingRaise = true;
+	}
 
-    // Update is called once per frame
-    void Update()
-    {
-        float rate;
+	// Update is called once per frame
+	void Update ()
+	{
+		float rate;
 
-        if (forcingRaise)
-        {
-            rate = forcedRaiseRate;
-        } else
-        {
-            rate = raiseRate;
-        }
+		if (forcingRaise) {
+			rate = forcedRaiseRate;
+		} else {
+			rate = raiseRate;
+		}
 
-        for (int x = 0; x < Board.Columns; x++)
-        {
-            for (int y = 1; y < Board.Rows; y++)
-            {
-                if (board.Blocks [x, y].State != Block.BlockState.Empty &&
-                    board.Blocks [x, y].State != Block.BlockState.Idle &&
-                    board.Blocks [x, y].State != Block.BlockState.Sliding)
-                {
-                    rate = 0.0f;
-                }
+		for (int x = 0; x < Board.Columns; x++) {
+			for (int y = 1; y < Board.Rows; y++) {
+				if (board.Blocks [x, y].State != Block.BlockState.Empty &&
+					board.Blocks [x, y].State != Block.BlockState.Idle &&
+					board.Blocks [x, y].State != Block.BlockState.Sliding) {
+					rate = 0.0f;
+				}
 
-                if (y == Board.Rows - 1)
-                {
-                    if (board.Blocks [x, y].State != Block.BlockState.Empty)
-                    {
-                        rate = 0.0f;
-                    }
-                }
-            }
-        }
+				if (y == Board.Rows - 1) {
+					if (board.Blocks [x, y].State != Block.BlockState.Empty) {
+						rate = 0.0f;
+					}
+				}
+			}
+		}
 
-        Elapsed += Time.deltaTime * rate;
+		Elapsed += Time.deltaTime * rate;
 
-        if (Elapsed >= Duration)
-        {
-            Elapsed = 0.0f;
+		if (Elapsed >= Duration) {
+			Elapsed = 0.0f;
 
-            for (int x = 0; x < Board.Columns; x++)
-            {
-                for (int y = Board.Rows - 1; y >= 1; y--)
-                {
-                    board.Blocks [x, y].State = board.Blocks [x, y - 1].State;
-                    board.Blocks [x, y].Type = board.Blocks [x, y - 1].Type;
+			for (int x = 0; x < Board.Columns; x++) {
+				for (int y = Board.Rows - 1; y >= 1; y--) {
+					board.Blocks [x, y].State = board.Blocks [x, y - 1].State;
+					board.Blocks [x, y].Type = board.Blocks [x, y - 1].Type;
 
-                    if (board.Blocks [x, y].State == Block.BlockState.Sliding)
-                    {
-                        BlockSlider slider = board.Blocks [x, y].GetComponent<BlockSlider>();
-                        BlockSlider sliderBelow = board.Blocks [x, y - 1].GetComponent<BlockSlider>();
+					if (board.Blocks [x, y].State == Block.BlockState.Sliding) {
+						BlockSlider slider = board.Blocks [x, y].GetComponent<BlockSlider> ();
+						BlockSlider sliderBelow = board.Blocks [x, y - 1].GetComponent<BlockSlider> ();
 
-                        slider.Direction = sliderBelow.Direction;
-                        slider.TargetState = sliderBelow.TargetState;
-                        slider.TargetType = sliderBelow.TargetType;
-                        slider.Elapsed = sliderBelow.Elapsed;
-                    }
-                }
-            }
+						slider.Direction = sliderBelow.Direction;
+						slider.TargetState = sliderBelow.TargetState;
+						slider.TargetType = sliderBelow.TargetType;
+						slider.Elapsed = sliderBelow.Elapsed;
+					}
+				}
+			}
 
-            board.CreateNewRow();
+			board.CreateNewRow ();
 
-            if (forcingRaise)
-            {
-                if (ScoreManager.Instance != null)
-                {
-                    ScoreManager.Instance.ScoreRaise();
-                }
-            }
+			if (forcingRaise) {
+				if (ScoreManager.Instance != null) {
+					ScoreManager.Instance.ScoreRaise ();
+				}
+			}
 
-            forcingRaise = false;
-        }
-    }
+			forcingRaise = false;
+		}
+	}
 }
