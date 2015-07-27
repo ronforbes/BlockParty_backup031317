@@ -14,7 +14,6 @@ public class BlockRenderer : MonoBehaviour
 	ParticleSystem particleSystem;
 	SpriteRenderer additiveLayer;
 	public List<Sprite> Sprites;
-	public List<Sprite> MatchedSprites;
 
 	// Use this for initialization
 	void Awake ()
