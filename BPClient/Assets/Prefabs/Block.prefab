@@ -178,19 +178,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Sprites:
-  - {fileID: 21300000, guid: 9448158162ba643369e340065d117d7f, type: 3}
+  - {fileID: 21300000, guid: 644ee43376d6149b6b324aaece771d6f, type: 3}
   - {fileID: 21300000, guid: d49c09d5ccf9f4af8b7d93d25869cc32, type: 3}
   - {fileID: 21300000, guid: 260f6e2c5e93a4c7585c289bb00b5001, type: 3}
   - {fileID: 21300000, guid: 794e892a75795455881e91439bda7c1c, type: 3}
   - {fileID: 21300000, guid: c67d6bccd0cf2411388217e80ffc1e4f, type: 3}
   - {fileID: 21300000, guid: d00f8022ecc3a4941a150078b92ad3cb, type: 3}
-  MatchedSprites:
-  - {fileID: 21300000, guid: 5633432901d494f3199c9af5e83548c9, type: 3}
-  - {fileID: 21300000, guid: e3440472f86ca459396b6b7afe21ffc4, type: 3}
-  - {fileID: 21300000, guid: c9584f7c365f14ead81fa6327ceb3d5b, type: 3}
-  - {fileID: 21300000, guid: d41104701bb674aee81268c9b9b0d219, type: 3}
-  - {fileID: 21300000, guid: d295a68826dfb444bb1f7e51b0898d47, type: 3}
-  - {fileID: 21300000, guid: 4891c094c41a448a7911e810143e192b, type: 3}
 --- !u!114 &11412748
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1510,6 +1503,11 @@ Prefab:
       propertyPath: m_Color.a
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: Sprites.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: 644ee43376d6149b6b324aaece771d6f,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 143722}
