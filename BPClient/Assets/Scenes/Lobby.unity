@@ -204,7 +204,7 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: 55f9fe1f45e524ddf9bc0bd7fa0279c6, type: 3}
     m_FontSize: 36
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 40
     m_Alignment: 1
@@ -271,7 +271,7 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: dd1668c2207e6463d8692486bca9ca42, type: 3}
     m_FontSize: 36
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 40
     m_Alignment: 0
@@ -338,7 +338,7 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: dd1668c2207e6463d8692486bca9ca42, type: 3}
     m_FontSize: 36
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 40
     m_Alignment: 2
@@ -537,7 +537,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -40, y: -40}
-  m_SizeDelta: {x: 325, y: 32}
+  m_SizeDelta: {x: 325, y: 33}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &616530301
 MonoBehaviour:
@@ -556,7 +556,7 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: 55f9fe1f45e524ddf9bc0bd7fa0279c6, type: 3}
     m_FontSize: 28
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 40
     m_Alignment: 2
@@ -623,7 +623,7 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: dd1668c2207e6463d8692486bca9ca42, type: 3}
     m_FontSize: 36
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 40
     m_Alignment: 1
@@ -1001,7 +1001,7 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: 55f9fe1f45e524ddf9bc0bd7fa0279c6, type: 3}
     m_FontSize: 36
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 40
     m_Alignment: 2
@@ -1124,7 +1124,7 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: 55f9fe1f45e524ddf9bc0bd7fa0279c6, type: 3}
     m_FontSize: 36
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 40
     m_Alignment: 0
@@ -1318,9 +1318,9 @@ MonoBehaviour:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 58
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 10
-    m_MaxSize: 40
+    m_MaxSize: 58
     m_Alignment: 2
     m_RichText: 1
     m_HorizontalOverflow: 0
