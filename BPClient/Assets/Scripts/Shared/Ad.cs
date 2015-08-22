@@ -48,7 +48,9 @@ public class Ad : MonoBehaviour
 
 	void OnBannerWasLoaded ()
 	{
-		ad.visible = true;
+		if (ad != null) {
+			ad.visible = true;
+		}
 	}
 
 	// Update is called once per frame
@@ -69,6 +71,8 @@ public class Ad : MonoBehaviour
 
 	void OnDestroy ()
 	{
-		ad.visible = false;
+		if (ad != null) {
+			ad.visible = false;
+		}
 	}
 }
