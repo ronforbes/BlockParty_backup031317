@@ -3,26 +3,25 @@ using System.Collections;
 
 public class BackButtonController : MonoBehaviour
 {
-	Animator gameUIAnimator;
-	Animator boardPanelAnimator;
+	Animator canvasAnimator;
 
 	void Start()
 	{
-		gameUIAnimator = GameObject.Find ("Game UI").GetComponent<Animator> ();
-		boardPanelAnimator = GameObject.Find ("Board Panel").GetComponent<Animator> ();
+		canvasAnimator = GameObject.Find ("Animation Canvas").GetComponent<Animator> ();
 	}
 
     public void Back()
     {
-		gameUIAnimator.SetBool ("isHidden", true);
-		boardPanelAnimator.SetBool ("isHidden", true);
+		canvasAnimator.SetBool ("isOpen", false);
 
 		StartCoroutine (WaitAndLoadLevel());
 	}	
 	
 	IEnumerator WaitAndLoadLevel()
 	{
-		yield return new WaitForSeconds (1.0f);
+		do {
+			yield return new WaitForEndOfFrame();
+		} while(canvasAnimator.IsInTransition(0) || canvasAnimator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Open"));
 
 		Application.LoadLevel("Menu");
 	}

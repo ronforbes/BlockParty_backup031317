@@ -95,7 +95,11 @@ public class GameClock : MonoBehaviour
                 {
                     State = ClockState.Results;
                     NextStateTime = DateTime.UtcNow + resultsDuration;
-                    Leaderboard.Instance.Reset();
+                    
+					if(Leaderboard.Instance != null)
+					{
+						Leaderboard.Instance.Reset();
+					}
 
                     if (Application.loadedLevelName == "Game")
                     {

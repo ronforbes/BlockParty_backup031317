@@ -51,12 +51,6 @@
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="UnityEngine.UI">
-      <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.Networking">
-      <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEngine.Analytics">
       <HintPath>Library\UnityAssemblies\UnityEngine.Analytics.dll</HintPath>
     </Reference>
@@ -481,6 +475,7 @@
     <Compile Include="Assets\Scripts\Results\GameResult.cs" />
     <Compile Include="Assets\Scripts\Results\LeaderboardReceiver.cs" />
     <Compile Include="Assets\Scripts\Results\ResultsRenderer.cs" />
+    <Compile Include="Assets\Scripts\Results\ResultsSceneView.cs" />
     <Compile Include="Assets\Scripts\Results\ResultsSender.cs" />
     <Compile Include="Assets\Scripts\Shared\Ad.cs" />
     <Compile Include="Assets\Scripts\Shared\BackButtonController.cs" />

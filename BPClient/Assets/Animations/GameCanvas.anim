@@ -5,7 +5,7 @@ AnimationClip:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: PlayButtonScaling
+  m_Name: GameCanvas
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -34,8 +34,32 @@ AnimationClip:
         tangentMode: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
-    path: 
-  m_FloatCurves: []
+    path: Canvas/Board Panel
+  m_FloatCurves:
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: .5
+        value: 140
+        inSlope: -839.999878
+        outSlope: -839.999878
+        tangentMode: 10
+      - time: .666666687
+        value: 0
+        inSlope: -419.999939
+        outSlope: -419.999939
+        tangentMode: 10
+      - time: .833333313
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: m_AnchoredPosition.y
+    path: Canvas/Game UI
+    classID: 224
+    script: {fileID: 0}
   m_PPtrCurves: []
   m_SampleRate: 60
   m_WrapMode: 0
@@ -44,10 +68,16 @@ AnimationClip:
     m_Extent: {x: 0, y: 0, z: 0}
   m_ClipBindingConstant:
     genericBindings:
-    - path: 0
+    - path: 1421945827
       attribute: 3
       script: {fileID: 0}
       classID: 4
+      customType: 0
+      isPPtrCurve: 0
+    - path: 3765459508
+      attribute: 538195251
+      script: {fileID: 0}
+      classID: 224
       customType: 0
       isPPtrCurve: 0
     pptrCurveMapping: []
@@ -72,6 +102,30 @@ AnimationClip:
   - curve:
       serializedVersion: 2
       m_Curve:
+      - time: .5
+        value: 140
+        inSlope: -839.999878
+        outSlope: -839.999878
+        tangentMode: 10
+      - time: .666666687
+        value: 0
+        inSlope: -419.999939
+        outSlope: -419.999939
+        tangentMode: 10
+      - time: .833333313
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: m_AnchoredPosition.y
+    path: Canvas/Game UI
+    classID: 224
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
       - time: .666666687
         value: 0
         inSlope: 6.00000143
@@ -90,7 +144,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
     attribute: m_LocalScale.x
-    path: 
+    path: Canvas/Board Panel
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -114,7 +168,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
     attribute: m_LocalScale.y
-    path: 
+    path: Canvas/Board Panel
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -138,7 +192,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
     attribute: m_LocalScale.z
-    path: 
+    path: Canvas/Board Panel
     classID: 224
     script: {fileID: 0}
   m_EulerEditorCurves: []
