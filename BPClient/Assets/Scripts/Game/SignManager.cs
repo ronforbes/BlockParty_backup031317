@@ -13,7 +13,7 @@ public class SignManager : MonoBehaviour {
 		for (int x = 0; x < Board.Columns; x++) {
 			for (int y = 0; y < Board.Rows; y++) {
 				Signs [x, y] = Instantiate(SignPrefab, Vector3.zero, Quaternion.identity) as Sign;
-				Signs [x, y].transform.parent = transform;
+				Signs [x, y].transform.SetParent(transform, false);
 				Signs [x, y].X = x;
 				Signs [x, y].Y = y;
 			}
