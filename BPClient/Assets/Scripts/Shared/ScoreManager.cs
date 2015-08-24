@@ -34,7 +34,7 @@ public class ScoreManager : MonoBehaviour
     public Dictionary<int, int> ChainLengths;
 
     const int raiseValue = 1;
-    const int matchValue = 10;
+    public const int MatchValue = 10;
     const int comboValue = 100;
     const int chainValue = 1000;
 
@@ -91,7 +91,7 @@ public class ScoreManager : MonoBehaviour
 
     public void ScoreMatch()
     {
-        Score += matchValue;
+        Score += MatchValue;
         Matches++;
     }
 

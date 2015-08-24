@@ -398,6 +398,9 @@
      <Compile Include="Assets\Scripts\Game\Board\ChainDetector.cs" />
      <Compile Include="Assets\Scripts\Game\Board\MatchDetector.cs" />
      <Compile Include="Assets\Scripts\Game\ScoreRenderer.cs" />
+     <Compile Include="Assets\Scripts\Game\Sign.cs" />
+     <Compile Include="Assets\Scripts\Game\SignManager.cs" />
+     <Compile Include="Assets\Scripts\Game\SignRenderer.cs" />
      <Compile Include="Assets\Scripts\Lobby\LeaderboardRenderer.cs" />
      <Compile Include="Assets\Scripts\Menu\PlayButtonController.cs" />
      <Compile Include="Assets\Scripts\Menu\UserBadgeController.cs" />

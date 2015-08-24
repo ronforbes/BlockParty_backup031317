@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class ChainDetector : MonoBehaviour
 {
-    int chainLength = 0;
+    public int ChainLength = 0;
     Board board;
 
     void Awake()
@@ -14,10 +14,10 @@ public class ChainDetector : MonoBehaviour
 
     public void IncrementChain()
     {
-        chainLength++;
+        ChainLength++;
         if (ScoreManager.Instance != null)
         {
-            ScoreManager.Instance.ScoreChain(chainLength);
+            ScoreManager.Instance.ScoreChain(ChainLength);
         }
     }
 
@@ -70,15 +70,15 @@ public class ChainDetector : MonoBehaviour
                 }
             }
 
-            if (chainLength > 1)
+            if (ChainLength > 1)
             {
                 if (ScoreManager.Instance != null)
                 {
-                    ScoreManager.Instance.ScoreChain(chainLength);
+                    ScoreManager.Instance.ScoreChain(ChainLength);
                 }
             }
 
-            chainLength = 1;
+            ChainLength = 1;
         }
     }
 }

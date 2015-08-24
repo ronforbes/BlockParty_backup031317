@@ -17,6 +17,7 @@ public class MatchDetector : MonoBehaviour
     List<MatchDetection> matchDetections;
     Board board;
     ChainDetector chainDetector;
+	SignManager signManager;
     public const int MinimumMatchLength = 3;
 
     // Use this for initialization
@@ -25,6 +26,7 @@ public class MatchDetector : MonoBehaviour
         matchDetections = new List<MatchDetection>();
         board = GetComponent<Board>();
         chainDetector = GetComponent<ChainDetector>();
+		signManager = GameObject.Find ("Sign Canvas").GetComponent<SignManager> ();
     }
 	
     public void RequestMatchDetection(Block block)
@@ -159,11 +161,15 @@ public class MatchDetector : MonoBehaviour
             {
                 ScoreManager.Instance.ScoreCombo(matchedBlockCount);
             }
+
+			signManager.CreateSign(block.X, block.Y, matchedBlockCount.ToString(), new Color(0, 0, 0));
         }
 
         if (incrementChain)
         {
             chainDetector.IncrementChain();
+
+			signManager.CreateSign(block.X, block.Y, chainDetector.ChainLength.ToString() + "x", new Color(0, 0, 0));
         }
     }
 }
