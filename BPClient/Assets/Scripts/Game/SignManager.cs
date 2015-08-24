@@ -32,11 +32,6 @@ public class SignManager : MonoBehaviour {
 		Signs [x, y].Play ();
 	}
 
-	public void Play()
-	{
-		Signs [3, 5].Play ();
-	}
-
 	// Update is called once per frame
 	void Update () {
 	
