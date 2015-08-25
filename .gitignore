@@ -222,3 +222,6 @@ pip-log.txt
 Builds/
 Library/
 Temp/
+*.csproj
+*.sln
+*.userprefs
