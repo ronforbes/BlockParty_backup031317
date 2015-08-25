@@ -45,7 +45,7 @@ public class LeaderboardReceiver : MonoBehaviour
 			try {
 				entry.Score = int.Parse (d ["score"].ToString ());
 			} catch (Exception e) {
-				e = null;
+				Debug.Log(e);
 				entry.Score = 0;
 			}
 

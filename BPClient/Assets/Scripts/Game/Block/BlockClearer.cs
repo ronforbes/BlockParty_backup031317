@@ -16,6 +16,11 @@ public class BlockClearer : MonoBehaviour
     /// </summary>
     BlockEmptier emptier;
 
+	/// <summary>
+	/// The sign manager used to create signs when blocks are cleared.
+	/// </summary>
+	SignManager signManager;
+
     /// <summary>
     /// The amount of time that the block has been waiting to clear
     /// </summary>
@@ -48,6 +53,7 @@ public class BlockClearer : MonoBehaviour
     {
         block = GetComponent<Block>();
         emptier = GetComponent<BlockEmptier>();
+		signManager = GameObject.Find ("Sign Canvas").GetComponent<SignManager> ();
     }
 	
     /// <summary>
@@ -79,6 +85,33 @@ public class BlockClearer : MonoBehaviour
                 {
                     ScoreManager.Instance.ScoreMatch();
                 }
+
+				Color color;
+				switch(block.Type)
+				{
+				default: 
+					color = new Color(0.0f, 0.0f, 0.0f);
+					break;
+				case 0:
+					color = new Color(0.01f, 0.65f, 1.0f);
+					break;
+				case 1:
+					color = new Color(1.0f, 0.18f, 0.0f);
+					break;
+				case 2:
+					color = new Color(1.0f, 0.7f, 0.0f);
+					break;
+				case 3:
+					color = new Color(0.25f, 0.23f, 0.67f);
+					break;
+				case 4:
+					color = new Color(0.93f, 0.24f, 0.57f);
+					break;
+				case 5:
+					color = new Color(0.40f, 0.76f, 0.0f);
+					break;
+				}
+				signManager.CreateSign(block.X, block.Y, ScoreManager.MatchValue.ToString(), color);
             }
         }
 

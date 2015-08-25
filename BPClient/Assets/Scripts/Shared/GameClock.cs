@@ -78,9 +78,19 @@ public class GameClock : MonoBehaviour
 
         // Deserialize and set the Game Clock state
         Dictionary<string, object> clock = Facebook.MiniJSON.Json.Deserialize(httpRequest.text) as Dictionary<string, object>;
-        State = (GameClock.ClockState)Enum.Parse(typeof(GameClock.ClockState), clock["state"] as string, true);
-        NextStateTime = DateTime.Parse(clock["nextStateTime"] as string);
-        CurrentGameId = clock["currentGameId"] as string;
+        if(clock != null && clock.ContainsKey("state"))
+		{
+			Debug.Log(clock["state"]);
+			State = (GameClock.ClockState)Enum.Parse(typeof(GameClock.ClockState), clock["state"] as string, true);
+		}
+
+		if (clock != null && clock.ContainsKey ("nextStateTime")) {
+			NextStateTime = DateTime.Parse (clock ["nextStateTime"] as string);
+		}
+
+		if (clock != null && clock.ContainsKey ("currentGameId")) {
+			CurrentGameId = clock ["currentGameId"] as string;
+		}
     }
 
     void Update()

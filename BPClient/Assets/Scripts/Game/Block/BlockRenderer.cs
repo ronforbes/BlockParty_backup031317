@@ -11,7 +11,7 @@ public class BlockRenderer : MonoBehaviour
 	BoardRaiser raiser;
 	SpriteRenderer spriteRenderer;
 	SpriteRenderer matchGradientRenderer;
-	ParticleSystem particleSystem;
+	ParticleSystem particles;
 	SpriteRenderer additiveLayer;
 	public List<Sprite> Sprites;
 
@@ -25,7 +25,7 @@ public class BlockRenderer : MonoBehaviour
 		raiser = GameObject.Find ("Board").GetComponent<BoardRaiser> ();
 		spriteRenderer = transform.Find ("Sprite").GetComponent<SpriteRenderer> ();
 		matchGradientRenderer = transform.Find ("Match Gradient").GetComponent<SpriteRenderer> ();
-		particleSystem = transform.Find ("Match Particles").GetComponent<ParticleSystem> ();
+		particles = transform.Find ("Match Particles").GetComponent<ParticleSystem> ();
 		additiveLayer = transform.Find ("Additive Layer").GetComponent<SpriteRenderer> ();
 	}
 
@@ -144,7 +144,7 @@ public class BlockRenderer : MonoBehaviour
 			float gradientScale = 0.5f + 1.0f * clearer.Elapsed / BlockClearer.Duration;
 			matchGradientRenderer.transform.localScale = new Vector3 (gradientScale, gradientScale, gradientScale);
 
-			particleSystem.Play ();
+			particles.Play ();
 
 			// Setup the additive layer to highlight the block and shrink throughout the clear
 			additiveLayer.enabled = true;
