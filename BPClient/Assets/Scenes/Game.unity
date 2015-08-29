@@ -1313,6 +1313,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c86b9e44f1744bb3879b53a4b52164f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SelectedBlock: {fileID: 0}
 --- !u!1 &2080891820
 GameObject:
   m_ObjectHideFlags: 0
