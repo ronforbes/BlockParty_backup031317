@@ -4,7 +4,7 @@ using System.Collections;
 public class BoardController : MonoBehaviour
 {
     Board board;
-    Block selectedBlock;
+    public Block SelectedBlock;
 
     // Use this for initialization
     void Awake()
@@ -24,7 +24,7 @@ public class BoardController : MonoBehaviour
                 Block block = hit.collider.gameObject.GetComponent<Block>();
                 if (block.State == Block.BlockState.Idle && block.Y > 0)
                 {
-                    selectedBlock = block;
+                    SelectedBlock = block;
                 }
             }
         }
@@ -32,48 +32,48 @@ public class BoardController : MonoBehaviour
         // If the mouse button is released, clear the selected block
         if (Input.GetMouseButtonUp(0))
         {
-            selectedBlock = null;
+            SelectedBlock = null;
         }
 
         // If a block has been selected, and the mouse has been dragged beyond its left or right edge,
         // determine the left and right blocks to be slid
-        if (selectedBlock != null)
+        if (SelectedBlock != null)
         {
-            float leftEdge = (float)selectedBlock.X - selectedBlock.transform.localScale.x / 2;
-            float rightEdge = (float)selectedBlock.X + selectedBlock.transform.localScale.x / 2;
+            float leftEdge = (float)SelectedBlock.X - SelectedBlock.transform.localScale.x / 2;
+            float rightEdge = (float)SelectedBlock.X + SelectedBlock.transform.localScale.x / 2;
 
             Block leftBlock = null, rightBlock = null;
 
             Vector3 mousePosition = Input.mousePosition;
 
             if (Camera.main.ScreenToWorldPoint(mousePosition).x < leftEdge &&
-                selectedBlock.State == Block.BlockState.Idle &&
-                selectedBlock.X - 1 >= 0 &&
-                (board.Blocks [selectedBlock.X - 1, selectedBlock.Y].State == Block.BlockState.Idle ||
-                board.Blocks [selectedBlock.X - 1, selectedBlock.Y].State == Block.BlockState.Empty) &&
-                (selectedBlock.Y + 1 == Board.Rows || (selectedBlock.Y + 1 < Board.Rows && 
-                board.Blocks [selectedBlock.X - 1, selectedBlock.Y + 1].State != Block.BlockState.Falling &&
-                board.Blocks [selectedBlock.X - 1, selectedBlock.Y + 1].State != Block.BlockState.WaitingToFall)))
+                SelectedBlock.State == Block.BlockState.Idle &&
+                SelectedBlock.X - 1 >= 0 &&
+                (board.Blocks [SelectedBlock.X - 1, SelectedBlock.Y].State == Block.BlockState.Idle ||
+                board.Blocks [SelectedBlock.X - 1, SelectedBlock.Y].State == Block.BlockState.Empty) &&
+                (SelectedBlock.Y + 1 == Board.Rows || (SelectedBlock.Y + 1 < Board.Rows && 
+                board.Blocks [SelectedBlock.X - 1, SelectedBlock.Y + 1].State != Block.BlockState.Falling &&
+                board.Blocks [SelectedBlock.X - 1, SelectedBlock.Y + 1].State != Block.BlockState.WaitingToFall)))
             {
-                leftBlock = board.Blocks [selectedBlock.X - 1, selectedBlock.Y];
-                rightBlock = selectedBlock;
+                leftBlock = board.Blocks [SelectedBlock.X - 1, SelectedBlock.Y];
+                rightBlock = SelectedBlock;
 
-                selectedBlock = leftBlock;
+                SelectedBlock = leftBlock;
             }
 
             if (Camera.main.ScreenToWorldPoint(mousePosition).x > rightEdge &&
-                selectedBlock.State == Block.BlockState.Idle &&
-                selectedBlock.X + 1 < Board.Columns &&
-                (board.Blocks [selectedBlock.X + 1, selectedBlock.Y].State == Block.BlockState.Idle ||
-                board.Blocks [selectedBlock.X + 1, selectedBlock.Y].State == Block.BlockState.Empty) &&
-                (selectedBlock.Y + 1 == Board.Rows || (selectedBlock.Y + 1 < Board.Rows &&
-                board.Blocks [selectedBlock.X + 1, selectedBlock.Y + 1].State != Block.BlockState.Falling &&
-                board.Blocks [selectedBlock.X + 1, selectedBlock.Y + 1].State != Block.BlockState.WaitingToFall)))
+                SelectedBlock.State == Block.BlockState.Idle &&
+                SelectedBlock.X + 1 < Board.Columns &&
+                (board.Blocks [SelectedBlock.X + 1, SelectedBlock.Y].State == Block.BlockState.Idle ||
+                board.Blocks [SelectedBlock.X + 1, SelectedBlock.Y].State == Block.BlockState.Empty) &&
+                (SelectedBlock.Y + 1 == Board.Rows || (SelectedBlock.Y + 1 < Board.Rows &&
+                board.Blocks [SelectedBlock.X + 1, SelectedBlock.Y + 1].State != Block.BlockState.Falling &&
+                board.Blocks [SelectedBlock.X + 1, SelectedBlock.Y + 1].State != Block.BlockState.WaitingToFall)))
             {
-                leftBlock = selectedBlock;
-                rightBlock = board.Blocks [selectedBlock.X + 1, selectedBlock.Y];
+                leftBlock = SelectedBlock;
+                rightBlock = board.Blocks [SelectedBlock.X + 1, SelectedBlock.Y];
 
-                selectedBlock = rightBlock;
+                SelectedBlock = rightBlock;
             }
 
             if (leftBlock != null && rightBlock != null)

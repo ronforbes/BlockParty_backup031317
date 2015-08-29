@@ -10,12 +10,14 @@ public class BoardRaiser : MonoBehaviour
 	bool forcingRaise;
 	const float forcedRaiseRate = 20.0f;
 	MatchDetector detector;
+	BoardController boardController;
 
 	// Use this for initialization
 	void Awake ()
 	{
 		board = GetComponent<Board> ();
 		detector = GetComponent<MatchDetector> ();
+		boardController = GetComponent<BoardController> ();
 	}
 	
 	public void ForceRaise ()
@@ -72,6 +74,11 @@ public class BoardRaiser : MonoBehaviour
 				}
 
 				detector.RequestMatchDetection(board.Blocks[x, 1]);
+			}
+
+			if(boardController.SelectedBlock != null)
+			{
+				boardController.SelectedBlock = board.Blocks[boardController.SelectedBlock.X, boardController.SelectedBlock.Y + 1];
 			}
 
 			board.CreateNewRow ();
